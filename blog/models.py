@@ -12,7 +12,8 @@ class Post(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # author = models.ForeignKey(User, on_delete=models.CASCADE) # author db 삭제시 작성한 글도 삭제
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL) # author db 삭제시 작성자명을 빈칸으로 둔다
 
     def __str__(self):
         return f'[{self.pk}]{self.title} :: {self.author}' # {self.pk}: 포스트의 pk 값, self.title}: 포스트의 title 값
